@@ -15,6 +15,7 @@ board:
 
     -Add a move --> public
     -Check for game end --> public
+    -showBoard --> public
 
 Player:
 

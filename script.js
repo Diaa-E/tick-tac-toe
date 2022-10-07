@@ -101,9 +101,22 @@ const gameBoard = (() => {
         {
             return true;
         }
-        
+
     };
 
-    return {};
+    const addMove = (sloty, slotx, sign) => {
+
+        if (!_checkUsed(boardArray[slotx][sloty]))
+        {
+            boardArray[slotx][sloty] = sign;
+        }
+    }
+
+    const showBoard = () => {
+
+        console.log(boardArray);
+    }
+
+    return {addMove, showBoard};
 
 })();
