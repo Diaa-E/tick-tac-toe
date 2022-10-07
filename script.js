@@ -89,7 +89,20 @@ const gameBoard = (() => {
         }
 
         return true
-    }
+    };
+
+    const _checkUsed = (slot) => {
+
+        if (slot === emptySlot)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+        
+    };
 
     return {};
 
