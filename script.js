@@ -9,7 +9,7 @@ const gameBoard = (() => {
         [emptySlot, emptySlot, emptySlot]
     ];
 
-    const resetBoard = () => {
+    const _resetBoard = () => {
         
         for (let i = 0; i < 3; i++)
         {
@@ -20,7 +20,7 @@ const gameBoard = (() => {
         };
     };
 
-    const checkWin = () => {
+    const _checkWin = () => {
 
         let gameOver = false;
 
@@ -72,6 +72,24 @@ const gameBoard = (() => {
             return {gameOver, "sign": boardArray[0][0]};
         }
     };
+
+    //the idea of checking draw is to check for empty slots after a win check
+    //if there is no winner then there are no empty slots then it's a draw
+    const _checkDraw = () => {
+
+        for(let i = 0; i < 3; i++)
+        {
+            for (let j = 0; j < 3; j++)
+            {
+                if (boardArray[i][j] === emptySlot)
+                {
+                    return false
+                }
+            }
+        }
+
+        return true
+    }
 
     return {};
 
