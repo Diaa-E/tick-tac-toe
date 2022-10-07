@@ -3,7 +3,11 @@
 const gameBoard = (() => {
 
     const emptySlot = " ";
-    let boardArray= [[], [], []];
+    let boardArray= [
+        [emptySlot, emptySlot, emptySlot],
+        [emptySlot, emptySlot, emptySlot],
+        [emptySlot, emptySlot, emptySlot]
+    ];
 
     const resetBoard = () => {
         
@@ -14,6 +18,59 @@ const gameBoard = (() => {
                 boardArray[i][j] = emptySlot;
             };
         };
+    };
+
+    const checkWin = () => {
+
+        let gameOver = false;
+
+        //check rows
+        for (let i = 0; i < 3; i++)
+        {
+            let sign = boardArray[i][0];
+            let next1 = boardArray[i][1];
+            let next2 = boardArray[i][2];
+
+            if (sign !== emptySlot && sign === next1 && sign === next2)
+            {
+                gameOver = true;
+                return {gameOver, sign};
+            };
+        };
+
+        //check columns
+        for (let i = 0; i < 3; i++)
+        {
+            let sign = boardArray[0][i];
+            let next1 = boardArray[1][i];
+            let next2 = boardArray[2][i];
+
+            if (sign !== emptySlot && sign === next1 && sign === next2)
+            {
+                gameOver = true;
+                return {gameOver, sign};
+            };
+        };
+
+        //check diagonals
+        
+        //top-left
+        if (boardArray[0][0] !== emptySlot && 
+            boardArray[0][0] === boardArray[1][1] &&
+            boardArray[0][0] === boardArray[2][2])
+        {
+            gameOver = true;
+            return {gameOver, "sign": boardArray[0][0]};
+        }
+
+        //top-right
+        if (boardArray[0][2] !== emptySlot && 
+            boardArray[0][2] === boardArray[1][1] &&
+            boardArray[0][2] === boardArray[2][0])
+        {
+            gameOver = true;
+            return {gameOver, "sign": boardArray[0][0]};
+        }
     };
 
     return {};
