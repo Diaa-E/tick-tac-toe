@@ -117,7 +117,18 @@ const gameBoard = (() => {
 
     const showBoard = () => {
 
-        console.log(boardArray);
+        const divSlots = document.querySelectorAll(".slot");
+        
+        let slotsCounter = 0;
+
+        for (let i = 0; i < 3; i++)
+        {
+            for (let j = 0; j < 3; j++)
+            {
+                divSlots[slotsCounter].innerHTML = boardArray[i][j];
+                slotsCounter++;
+            }
+        }
     }
 
     return {addMove, showBoard};
@@ -150,3 +161,5 @@ const newPlayer = (name, sign) => {
 
     return {getName, getSign, play};
 };
+
+gameBoard.showBoard();
