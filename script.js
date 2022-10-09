@@ -1,12 +1,17 @@
 "use strict"
 
+const signs = ["X", "O"];
+
 //game board module
 const gameBoard = (() => {
     
     const divSlots = document.querySelectorAll(".slot");
 
     let xTurn = true;
+    let winner = null;
+
     const emptySlot = " ";
+
     let boardArray= [
         [emptySlot, emptySlot, emptySlot],
         [emptySlot, emptySlot, emptySlot],
@@ -20,7 +25,7 @@ const gameBoard = (() => {
 
             addMove(e.target.getAttribute("data-y"), e.target.getAttribute("data-x"),  _toggleTurn());
             showBoard();
-
+            checkGameover();
         });
     });
 
@@ -29,12 +34,12 @@ const gameBoard = (() => {
         if (xTurn)
         {
             xTurn = !xTurn;
-            return "X";
+            return signs[0];
         }
         else
         {
             xTurn = !xTurn;
-            return "O";
+            return signs[1];
         }
 
     };
@@ -64,7 +69,8 @@ const gameBoard = (() => {
             if (sign !== emptySlot && sign === next1 && sign === next2)
             {
                 gameOver = true;
-                return {gameOver, sign};
+                winner = _getWinner(sign);
+                return gameOver;
             };
         };
 
@@ -78,7 +84,8 @@ const gameBoard = (() => {
             if (sign !== emptySlot && sign === next1 && sign === next2)
             {
                 gameOver = true;
-                return {gameOver, sign};
+                winner = _getWinner(sign);
+                return gameOver;
             };
         };
 
@@ -90,7 +97,8 @@ const gameBoard = (() => {
             boardArray[0][0] === boardArray[2][2])
         {
             gameOver = true;
-            return {gameOver, "sign": boardArray[0][0]};
+            winner = _getWinner(boardArray[0][0]);
+            return gameOver;
         }
 
         //top-right
@@ -99,10 +107,11 @@ const gameBoard = (() => {
             boardArray[0][2] === boardArray[2][0])
         {
             gameOver = true;
-            return {gameOver, "sign": boardArray[0][0]};
+            winner = _getWinner(boardArray[0][2]);
+            return gameOver;
         }
 
-        return {gameOver, "sign": null};
+        return false;
     };
 
     //the idea of checking draw is to check for empty slots after a win check
@@ -121,6 +130,17 @@ const gameBoard = (() => {
         }
 
         return true
+    };
+
+    const _getWinner = (sign) => {
+
+        for (let i = 0; i < signs.length; i++)
+        {
+            if (sign === signs[i])
+            {
+                return i;
+            }
+        }
     };
 
     const _checkUsed = (slot) => {
@@ -158,7 +178,15 @@ const gameBoard = (() => {
         }
     }
 
-    return {addMove, showBoard};
+    const checkGameover = () => {
+
+        if (_checkWin())
+        {
+            document.write(`${players[winner].getName()} (${players[winner].getSign()}) Wins the game`)
+        }
+    };
+
+    return {addMove, showBoard, checkGameover};
 
 })();
 
@@ -190,3 +218,8 @@ const newPlayer = (name, sign) => {
 };
 
 gameBoard.showBoard();
+
+const players = [
+    newPlayer("Joe", signs[0]),
+    newPlayer("Yelo", signs[1])
+]
