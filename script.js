@@ -5,6 +5,7 @@ const gameBoard = (() => {
     
     const divSlots = document.querySelectorAll(".slot");
 
+    const xTurn = true;
     const emptySlot = " ";
     let boardArray= [
         [emptySlot, emptySlot, emptySlot],
@@ -22,6 +23,12 @@ const gameBoard = (() => {
 
         });
     });
+
+    const _toggleTurn = () => {
+
+        xTurn = !xTurn;
+
+    };
 
     const _resetBoard = () => {
         
