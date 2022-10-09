@@ -5,7 +5,7 @@ const gameBoard = (() => {
     
     const divSlots = document.querySelectorAll(".slot");
 
-    const xTurn = true;
+    let xTurn = true;
     const emptySlot = " ";
     let boardArray= [
         [emptySlot, emptySlot, emptySlot],
@@ -18,7 +18,7 @@ const gameBoard = (() => {
 
         slot.addEventListener("click", (e) => {
 
-            addMove(e.target.getAttribute("data-y"), e.target.getAttribute("data-x"), "X");
+            addMove(e.target.getAttribute("data-y"), e.target.getAttribute("data-x"),  _toggleTurn());
             showBoard();
 
         });
@@ -26,7 +26,16 @@ const gameBoard = (() => {
 
     const _toggleTurn = () => {
 
-        xTurn = !xTurn;
+        if (xTurn)
+        {
+            xTurn = !xTurn;
+            return "X";
+        }
+        else
+        {
+            xTurn = !xTurn;
+            return "O";
+        }
 
     };
 
