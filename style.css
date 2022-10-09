@@ -32,6 +32,7 @@ body{
     --font-dark: rgb(51, 51, 51);
     --background: rgb(36, 36, 36);
     --hover: rgb(176, 225, 255);
+    --active: rgb(143, 181, 204);
 }
 
 .game-board{
@@ -58,4 +59,8 @@ body{
 .slot:hover{
     background-color: var(--hover);
     color: var(--font-dark);
+}
+
+.slot:active{
+    background-color: var(--active);
 }
