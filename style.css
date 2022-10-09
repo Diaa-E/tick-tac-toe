@@ -19,8 +19,43 @@
 body{
     font-family: "Roboto", sans-serif;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    place-content: center;
+    min-height: 100vh;
+    background-color: var(--background);
 }
 
 :root{
     --font-bright: rgb(238, 238, 238);
+    --font-dark: rgb(51, 51, 51);
+    --background: rgb(36, 36, 36);
+    --hover: rgb(176, 225, 255);
+}
+
+.game-board{
+    display: grid;
+    grid-template: repeat(3, 150px) / repeat(3, 150px);
+    background-color: var(--font-bright);
+    gap: 5px;
+    place-content: stretch;
+    place-items: stretch;
+    width: min-content;
+    height: min-content;
+}
+
+.slot{
+    display: flex;
+    place-content: center;
+    place-items: center;;
+    background-color: var(--background);
+    font-size: 56px;
+    color: var(--font-bright);
+    cursor: pointer;
+}
+
+.slot:hover{
+    background-color: var(--hover);
+    color: var(--font-dark);
 }

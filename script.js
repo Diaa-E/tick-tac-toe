@@ -1,5 +1,6 @@
 "use strict"
 
+//game board module
 const gameBoard = (() => {
 
     const emptySlot = " ";
@@ -123,9 +124,10 @@ const gameBoard = (() => {
 
 })();
 
+//player factory
 const newPlayer = (name, sign) => {
 
-    const playerInfo = {
+    const _playerInfo = {
         "name": name,
         "sign": sign,
     }
@@ -136,13 +138,13 @@ const newPlayer = (name, sign) => {
 
     const getName = () => {
 
-        return playerInfo.name;
+        return _playerInfo.name;
 
     };
 
     const getSign = () => {
 
-        return playerInfo.sign;
+        return _playerInfo.sign;
 
     }
 

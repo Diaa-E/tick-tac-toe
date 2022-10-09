@@ -1,6 +1,7 @@
 # tick-tac-toe
 An exercise on the factory and module patterns
 
+-Board size is not dynamic (only 3x3)
 
 Board => module
 players => factory
