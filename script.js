@@ -197,10 +197,6 @@ const newPlayer = (name, sign) => {
         "name": name,
         "sign": sign,
     }
-    const play = (y, x) =>{
-
-        gameBoard.addMove(y, x, sign);
-    };
 
     const getName = () => {
 
@@ -214,7 +210,7 @@ const newPlayer = (name, sign) => {
 
     }
 
-    return {getName, getSign, play};
+    return {getName, getSign};
 };
 
 gameBoard.showBoard();
