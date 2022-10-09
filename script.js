@@ -71,6 +71,8 @@ const gameBoard = (() => {
             gameOver = true;
             return {gameOver, "sign": boardArray[0][0]};
         }
+
+        return {gameOver, "sign": null};
     };
 
     //the idea of checking draw is to check for empty slots after a win check
@@ -120,3 +122,29 @@ const gameBoard = (() => {
     return {addMove, showBoard};
 
 })();
+
+const newPlayer = (name, sign) => {
+
+    const playerInfo = {
+        "name": name,
+        "sign": sign,
+    }
+    const play = (y, x) =>{
+
+        gameBoard.addMove(y, x, sign);
+    };
+
+    const getName = () => {
+
+        return playerInfo.name;
+
+    };
+
+    const getSign = () => {
+
+        return playerInfo.sign;
+
+    }
+
+    return {getName, getSign, play};
+};
