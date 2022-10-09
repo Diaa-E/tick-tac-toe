@@ -2,6 +2,8 @@
 
 //game board module
 const gameBoard = (() => {
+    
+    const divSlots = document.querySelectorAll(".slot");
 
     const emptySlot = " ";
     let boardArray= [
@@ -9,6 +11,17 @@ const gameBoard = (() => {
         [emptySlot, emptySlot, emptySlot],
         [emptySlot, emptySlot, emptySlot]
     ];
+
+    //event listeners
+    divSlots.forEach(slot => {
+
+        slot.addEventListener("click", (e) => {
+
+            addMove(e.target.getAttribute("data-y"), e.target.getAttribute("data-x"), "X");
+            showBoard();
+
+        });
+    });
 
     const _resetBoard = () => {
         
@@ -116,8 +129,6 @@ const gameBoard = (() => {
     }
 
     const showBoard = () => {
-
-        const divSlots = document.querySelectorAll(".slot");
         
         let slotsCounter = 0;
 
