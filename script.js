@@ -83,8 +83,8 @@ const gameBoard = (() => {
             {
                 hPlayerNames[0].classList.add("turn");
                 hPlayerNames[1].classList.remove("turn");
-            xTurn = !xTurn;
-            return signs[1];
+                xTurn = !xTurn;
+                return signs[1];
             }
         }
     };
@@ -110,6 +110,11 @@ const gameBoard = (() => {
         divDraw.forEach(div => {
 
             div.classList.remove("winner-active");
+        });
+
+        divSlots.forEach(slot => {
+
+            slot.classList.remove("winner-active");
         });
     };
 
