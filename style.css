@@ -85,3 +85,13 @@ body{
 .winner-active{
     color: var(--winner);
 }
+
+.play-again{
+    filter: invert();
+    cursor: pointer;
+    transition-duration: 1000ms;
+}
+
+.play-again:hover{
+    transform: rotate(180deg);
+}
