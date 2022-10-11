@@ -1,6 +1,7 @@
 "use strict"
 
 const signs = ["X", "O"];
+const hPlayerNames = document.querySelectorAll("#player-name");
 
 //game board module
 const gameBoard = (() => {
@@ -9,7 +10,6 @@ const gameBoard = (() => {
     const divWinner = document.querySelectorAll("#player-win");
     const divDraw = document.querySelectorAll("#draw");
     const imgPlayAgain = document.querySelectorAll(".play-again");
-    const hPlayerNames = document.querySelectorAll("#player-name");
 
     let gameOver = false;
     let xTurn = true;
@@ -102,6 +102,7 @@ const gameBoard = (() => {
         gameOver = false;
         _hidePlayAgain();
 
+        //remove game over classes
         divWinner.forEach(div => {
 
             div.classList.remove("winner-active");
@@ -289,10 +290,26 @@ const gameBoard = (() => {
 //player factory
 const newPlayer = (name, sign) => {
 
-    const _playerInfo = {
-        "name": name,
-        "sign": sign,
+    let _playerInfo
+
+    switch(name)
+    {
+        case null:
+        case undefined:
+        case "": 
+            _playerInfo = {
+                "name": `${sign}_${Math.floor(Math.random() * 10)} (${sign})`,
+                "sign": sign,
+            }
+            break;
+        default:
+            _playerInfo = {
+                "name": `${name} (${sign})`,
+                "sign": sign,
+            }
     }
+    
+    
 
     const getName = () => {
 
@@ -312,6 +329,9 @@ const newPlayer = (name, sign) => {
 gameBoard.showBoard();
 
 const players = [
-    newPlayer("Joe", signs[0]),
-    newPlayer("Yelo", signs[1])
+    newPlayer(prompt("Enter player 1's name (X):"), signs[0]),
+    newPlayer(prompt("Enter player 2's name (O):"), signs[1])
 ]
+
+hPlayerNames[0].innerText = players[0].getName();
+hPlayerNames[1].innerText = players[1].getName();
