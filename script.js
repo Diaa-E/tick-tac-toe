@@ -9,6 +9,7 @@ const gameBoard = (() => {
     const divWinner = document.querySelectorAll("#player-win");
     const divDraw = document.querySelectorAll("#draw");
     const imgPlayAgain = document.querySelectorAll(".play-again");
+    const hPlayerNames = document.querySelectorAll("#player-name");
 
     let gameOver = false;
     let xTurn = true;
@@ -64,11 +65,15 @@ const gameBoard = (() => {
 
         if (xTurn)
         {
+            hPlayerNames[1].classList.add("turn");
+            hPlayerNames[0].classList.remove("turn");
             xTurn = !xTurn;
             return signs[0];
         }
         else
         {
+            hPlayerNames[0].classList.add("turn");
+            hPlayerNames[1].classList.remove("turn");
             xTurn = !xTurn;
             return signs[1];
         }

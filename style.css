@@ -95,3 +95,11 @@ body{
 .play-again:hover{
     transform: rotate(180deg);
 }
+
+h1, h2{
+    color: var(--font-bright);
+}
+
+.turn{
+    color: var(--warning);
+}
