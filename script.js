@@ -69,21 +69,24 @@ const gameBoard = (() => {
 
     const _toggleTurn = () => {
 
-        if (xTurn)
+        if (!gameOver)
         {
-            hPlayerNames[1].classList.add("turn");
-            hPlayerNames[0].classList.remove("turn");
-            xTurn = !xTurn;
-            return signs[0];
-        }
-        else
-        {
-            hPlayerNames[0].classList.add("turn");
-            hPlayerNames[1].classList.remove("turn");
+
+            if (xTurn)
+            {
+                hPlayerNames[1].classList.add("turn");
+                hPlayerNames[0].classList.remove("turn");
+                xTurn = !xTurn;
+                return signs[0];
+            }
+            else
+            {
+                hPlayerNames[0].classList.add("turn");
+                hPlayerNames[1].classList.remove("turn");
             xTurn = !xTurn;
             return signs[1];
+            }
         }
-
     };
 
     const _resetBoard = () => {
