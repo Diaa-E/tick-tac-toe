@@ -43,6 +43,12 @@ const gameBoard = (() => {
         });
     });
 
+    const _highlightWin = (slotX, slotY) =>{
+
+        const slot = document.querySelector(`[data-x="${slotX}"][data-y="${slotY}"]`);
+        slot.classList.add("winner-active");
+    };
+
     const _hidePlayAgain = () =>{
 
         imgPlayAgain.forEach(image => {
@@ -119,6 +125,12 @@ const gameBoard = (() => {
             {
                 gameOver = true;
                 winner = _getWinner(sign);
+                
+                for (let j = 0; j < 3; j++)
+                {
+                    _highlightWin(i, j);
+                }
+
                 return gameOver;
             };
         };
@@ -134,6 +146,12 @@ const gameBoard = (() => {
             {
                 gameOver = true;
                 winner = _getWinner(sign);
+
+                for (let j = 0; j < 3; j++)
+                {
+                    _highlightWin(j, i);
+                }
+
                 return gameOver;
             };
         };
@@ -147,6 +165,11 @@ const gameBoard = (() => {
         {
             gameOver = true;
             winner = _getWinner(boardArray[0][0]);
+
+            _highlightWin(0, 0);
+            _highlightWin(1, 1);
+            _highlightWin(2, 2);
+
             return gameOver;
         }
 
@@ -157,6 +180,11 @@ const gameBoard = (() => {
         {
             gameOver = true;
             winner = _getWinner(boardArray[0][2]);
+
+            _highlightWin(0, 2);
+            _highlightWin(1, 1);
+            _highlightWin(2, 0);
+
             return gameOver;
         }
 
