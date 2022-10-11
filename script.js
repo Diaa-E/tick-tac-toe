@@ -6,6 +6,8 @@ const signs = ["X", "O"];
 const gameBoard = (() => {
     
     const divSlots = document.querySelectorAll(".slot");
+    const divWinner = document.querySelectorAll("#player-win");
+    const divDraw = document.querySelectorAll("#draw");
 
     let xTurn = true;
     let winner = null;
@@ -182,7 +184,14 @@ const gameBoard = (() => {
 
         if (_checkWin())
         {
-            document.write(`${players[winner].getName()} (${players[winner].getSign()}) Wins the game`)
+            divWinner[winner].classList.add("winner-active");
+        }
+        else if (_checkDraw())
+        {
+            for (let i = 0; i < divDraw.length; i++)
+            {
+                divDraw[i].classList.add("winner-active");
+            }
         }
     };
 
