@@ -9,6 +9,7 @@ const gameBoard = (() => {
     const divWinner = document.querySelectorAll("#player-win");
     const divDraw = document.querySelectorAll("#draw");
 
+    let gameOver = false;
     let xTurn = true;
     let winner = null;
 
@@ -55,11 +56,13 @@ const gameBoard = (() => {
                 boardArray[i][j] = emptySlot;
             };
         };
+
+        gameOver = false;
     };
 
     const _checkWin = () => {
 
-        let gameOver = false;
+        gameOver = false;
 
         //check rows
         for (let i = 0; i < 3; i++)
@@ -160,7 +163,7 @@ const gameBoard = (() => {
 
     const addMove = (sloty, slotx, sign) => {
 
-        if (!_checkUsed(boardArray[slotx][sloty]))
+        if (!_checkUsed(boardArray[slotx][sloty]) && !gameOver)
         {
             boardArray[slotx][sloty] = sign;
         }
@@ -185,12 +188,14 @@ const gameBoard = (() => {
         if (_checkWin())
         {
             divWinner[winner].classList.add("winner-active");
+            gameOver = true;
         }
         else if (_checkDraw())
         {
             for (let i = 0; i < divDraw.length; i++)
             {
                 divDraw[i].classList.add("winner-active");
+                gameOver = true;
             }
         }
     };
