@@ -20,7 +20,6 @@ body{
     font-family: "Roboto", sans-serif;
     padding: 20px;
     display: flex;
-    flex-direction: column;
     place-items: center;
     place-content: center;
     min-height: 100vh;
@@ -33,6 +32,9 @@ body{
     --background: rgb(36, 36, 36);
     --hover: rgb(176, 225, 255);
     --active: rgb(143, 181, 204);
+    --font-greyed: rgb(51, 51, 51) ;
+    --warning: rgb(255, 40, 40);
+    --winner: rgb(56, 248, 168);
 }
 
 .game-board{
@@ -63,4 +65,23 @@ body{
 
 .slot:active{
     background-color: var(--active);
+}
+
+.player-info{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    place-items: center;
+    color: var(--font-bright);
+    gap: 30px;
+}
+
+.winner-inactive{
+    color: var(--font-greyed);
+    font-weight: bold;
+}
+
+.winner-active{
+    color: var(--winner);
 }
