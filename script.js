@@ -8,6 +8,7 @@ const gameBoard = (() => {
     const divSlots = document.querySelectorAll(".slot");
     const divWinner = document.querySelectorAll("#player-win");
     const divDraw = document.querySelectorAll("#draw");
+    const imgPlayAgain = document.querySelectorAll(".play-again");
 
     let gameOver = false;
     let xTurn = true;
@@ -31,6 +32,33 @@ const gameBoard = (() => {
             checkGameover();
         });
     });
+
+    imgPlayAgain.forEach(image => {
+
+        image.addEventListener("click", (e) => {
+
+            _resetBoard();
+            showBoard();
+        });
+    });
+
+    const _hidePlayAgain = () =>{
+
+        imgPlayAgain.forEach(image => {
+
+            image.setAttribute("hidden", "true");
+
+        });
+    };
+
+    const _showPlayAgain = () => {
+
+        imgPlayAgain.forEach(image => {
+
+            image.removeAttribute("hidden");
+
+        });
+    };
 
     const _toggleTurn = () => {
 
@@ -58,6 +86,17 @@ const gameBoard = (() => {
         };
 
         gameOver = false;
+        _hidePlayAgain();
+
+        divWinner.forEach(div => {
+
+            div.classList.remove("winner-active");
+        });
+
+        divDraw.forEach(div => {
+
+            div.classList.remove("winner-active");
+        });
     };
 
     const _checkWin = () => {
@@ -189,6 +228,7 @@ const gameBoard = (() => {
         {
             divWinner[winner].classList.add("winner-active");
             gameOver = true;
+            _showPlayAgain();
         }
         else if (_checkDraw())
         {
@@ -196,6 +236,7 @@ const gameBoard = (() => {
             {
                 divDraw[i].classList.add("winner-active");
                 gameOver = true;
+                _showPlayAgain();
             }
         }
     };
